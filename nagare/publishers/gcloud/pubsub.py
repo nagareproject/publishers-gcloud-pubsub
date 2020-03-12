@@ -12,7 +12,6 @@
 from functools import partial
 
 from nagare.server import publisher
-from concurrent.futures import ThreadPoolExecutor
 
 
 class Publisher(publisher.Publisher):
