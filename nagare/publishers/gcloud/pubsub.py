@@ -43,11 +43,6 @@ class Publisher(publisher.Publisher):
 
         super(Publisher, self)._serve(app)
 
-        future = self.subscription.subscribe(partial(self.start_handle_request, app))
-
-        try:
-            future.result()
-        except KeyboardInterrupt:
-            future.cancel()
+        self.subscription.start_consuming(partial(self.start_handle_request, app))
 
         return 0
