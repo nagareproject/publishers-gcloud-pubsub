@@ -32,9 +32,9 @@ class Publisher(publisher.Publisher):
         banner = super(Publisher, self).generate_banner()
         return banner + ' on subscription `{}`'.format(str(self.subscription))
 
-    def start_handle_request(self, app, msg):
+    def start_handle_request(self, app, services, msg):
         try:
-            super(Publisher, self).start_handle_request(app, subscription=self.subscription, msg=msg)
+            super(Publisher, self).start_handle_request(app, services, subscription=self.subscription, msg=msg)
         except Exception:
             pass
 
@@ -43,6 +43,6 @@ class Publisher(publisher.Publisher):
 
         super(Publisher, self)._serve(app)
 
-        self.subscription.start_consuming(partial(self.start_handle_request, app))
+        self.subscription.start_consuming(partial(self.start_handle_request, app, services_service))
 
         return 0
