@@ -1,5 +1,5 @@
 # --
-# Copyright (c) 2008-2022 Net-ng.
+# Copyright (c) 2008-2023 Net-ng.
 # All rights reserved.
 #
 # This software is licensed under the BSD License, as described in
@@ -7,7 +7,7 @@
 # this distribution.
 # --
 
-"""The Google cloud pub/sub publisher"""
+"""The Google cloud pub/sub publisher."""
 
 from functools import partial
 
@@ -15,11 +15,10 @@ from nagare.server import publisher
 
 
 class Publisher(publisher.Publisher):
-    """The Google cloud pub/sub publisher"""
+    """The Google cloud pub/sub publisher."""
 
     CONFIG_SPEC = dict(
-        publisher.Publisher.CONFIG_SPEC,
-        subscription='string(help="name of the subscription to listen to")'
+        publisher.Publisher.CONFIG_SPEC, subscription='string(help="name of the subscription to listen to")'
     )
     has_multi_threads = True
 
@@ -36,7 +35,7 @@ class Publisher(publisher.Publisher):
         try:
             super(Publisher, self).start_handle_request(app, services, subscription=self.subscription, msg=msg)
         except Exception:
-            pass
+            pass  # noqa: S110
 
     def _serve(self, app, subscription, services_service, **conf):
         self.subscription = services_service[subscription]

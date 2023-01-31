@@ -1,0 +1,2 @@
+[nagare.publishers]
+gcloud.pubsub = nagare.publishers.gcloud.pubsub:Publisher
